@@ -23,7 +23,7 @@ export class VisComponent implements OnInit {
     }
     ngOnInit() {
         this.mynodes();
-        const myapi = `${environment.API_HOST}/device-links/`
+        const myapi = `${environment.API_HOST}`
         this.http.get(myapi).subscribe(
             resp => {
                 this.Link = resp;
@@ -31,8 +31,8 @@ export class VisComponent implements OnInit {
                 this.Link.forEach(element => {
                     this.edges.push(
                         {
-                            from: element.fromDevice.id,
-                            to: element.toDevice.id,
+                            from: element.id,
+                            to: element.id,
                             length: element.length
                         }
                     )
@@ -42,7 +42,7 @@ export class VisComponent implements OnInit {
         )
     }
     mynodes() {
-        const api = `${environment.API_HOST}/devices/`
+        const api = `${environment.API_HOST}`
         this.http.get(api).subscribe(
             (resp: any) => {
                 this.Device = resp;
